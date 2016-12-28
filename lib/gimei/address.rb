@@ -22,16 +22,20 @@ class Gimei::Address
   alias_method :to_s, :kanji
 
   class Prefecture
-    def kanji
+    def code
       @prefectures[0]
     end
 
-    def hiragana
+    def kanji
       @prefectures[1]
     end
 
-    def katakana
+    def hiragana
       @prefectures[2]
+    end
+
+    def katakana
+      @prefectures[3]
     end
 
     def initialize

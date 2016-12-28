@@ -2,6 +2,11 @@
 require_relative 'spec_helper'
 
 describe Gimei do
+
+  it '数字文字が返却されること'do
+    Gimei.address.prefecture.code.must_match(/\A[0-4][0-9]$/)
+  end
+
   it '全角文字が返ること' do
     Gimei.address.kanji.must_match(/\A[#{Moji.zen}]+\z/)
     Gimei.address.to_s.must_match(/\A[#{Moji.zen}]+\z/)
