@@ -1,10 +1,11 @@
 class Gimei::Address
-  attr_reader :prefecture, :city, :town
+  attr_reader :zip_code, :prefecture, :city, :town
 
   def initialize
+    @zip_code   = ZipCode.new
     @prefecture = Prefecture.new
-    @city = City.new
-    @town = Town.new
+    @city       = City.new
+    @town       = Town.new
   end
 
   def kanji
@@ -20,6 +21,16 @@ class Gimei::Address
   end
 
   alias_method :to_s, :kanji
+
+  class ZipCode
+    def hyphen
+      '%03d'%rand(1...899) + '-' + '%04d'%rand(1...9999)
+    end
+
+    def without_hyphen
+      hyphen.sub!(/-/, '')
+    end
+  end
 
   class Prefecture
     def code

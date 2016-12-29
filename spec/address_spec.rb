@@ -1,11 +1,17 @@
 # -*- coding: utf-8 -*-
 require_relative 'spec_helper'
+require 'pp'
 
 describe Gimei do
 
   it '数字文字が返却されること'do
     Gimei.address.prefecture.code.must_match(/\A[0-4][0-9]$/)
+    Gimei.address.zip_code.without_hyphen.must_match(/[0-8]{3}[0-9]{4}$/)
   end
+
+ it '郵便番号表記が取得できること' do
+   Gimei.address.zip_code.hyphen.must_match(/[0-8]{3}-[0-9]{4}$/)
+ end
 
   it '全角文字が返ること' do
     Gimei.address.kanji.must_match(/\A[#{Moji.zen}]+\z/)

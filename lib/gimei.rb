@@ -12,7 +12,7 @@ class Gimei
   GENDER = [:male, :female].freeze
 
   def_delegators :@name, :kanji, :hiragana, :katakana, :first, :last, :male?, :female?
-  def_delegators :@address, :prefecture, :city, :town
+  def_delegators :@address, :zip_code, :prefecture, :city, :town
   alias_method :to_s, :kanji
 
   attr_reader :name, :address
@@ -22,7 +22,7 @@ class Gimei
 
     def_delegators :name, :kanji, :hiragana, :katakana, :first, :last
     def_delegators Gimei::Name, :male, :female
-    def_delegators :address, :prefecture, :city, :town
+    def_delegators :address, :zip_code, :prefecture, :city, :town
 
     def name
       Name.new
